@@ -1,0 +1,18 @@
+{
+  "name": "tempapp",
+  "version": "1.0.0",
+  "description": "A simple iot application that shares the temprature of a room through the convinience of an andriod application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Prosper Nweze",
+  "license": "ISC",
+  "dependencies": {
+    "bluetooth-serial-port": "^2.1.7",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "node-bluetooth": "^1.2.4",
+    "socket.io": "^2.2.0"
+  }
+}
