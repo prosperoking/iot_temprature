@@ -1,0 +1,16 @@
+[Unit]
+Description=Temppi Temprature http server
+
+
+[Service]
+PIDFile=/tmp/temppi-server-99.pid
+User=pi
+Group=users
+Restart=always
+KillSignal=SIGQUIT
+WorkingDirectory=/home/pi/project/
+ExecStart=/home/pi/project/server/index.js
+
+
+[Install]
+WantedBy=multi-user.target

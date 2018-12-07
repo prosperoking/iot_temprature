@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 var server = new(require('bluetooth-serial-port')).BluetoothSerialPortServer();
 
 var CHANNEL = 10; // My service channel. Defaults to 1 if omitted.

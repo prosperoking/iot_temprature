@@ -1,20 +1,24 @@
+#! /usr/bin/env node
+
 const express = require('express')
 const h2 = require('https')
 const fs = require('fs')
+const path = require('path')
 const morgan = require('morgan')
 const http = require('http').Server
 const {getWifiNetworks,getTemprature} = require('../scripts')
 const InitSocketIo = require('./socket.io')
 const options = {
-    key: fs.readFileSync('./file.pem'),
-    cert: fs.readFileSync('./file.crt')
+    key: fs.readFileSync(path.join(__dirname,'./file.pem')),
+    cert: fs.readFileSync(path.join(__dirname,'./file.crt'))
 };
 TempEvent = getTemprature();
 const app = express()
 app.use(morgan('dev'))
-const server = h2.createServer(options,app)
-InitSocketIo(server,TempEvent)
-app.get('/',(req,res)=>{
+//const server = h2.createServer(options,app)
+const httpServer = http(app)
+InitSocketIo(httpServer,TempEvent)
+app.get('/wifi-networks',(req,res)=>{
     getWifiNetworks().then(result=>{
         res.json(result)
     }).catch(err=>{
@@ -26,7 +30,14 @@ app.get('/test',(req,res)=>{
     return res.sendFile(__dirname +"/public/index.html")
 })
 
-server.listen(1212,(err)=>{
+app.get('/',(req,res)=>{
+    return res.json({
+        status:true,
+        msg:"Welcome to TempMeter"
+    })
+})
+
+httpServer.listen(1212,(err)=>{
     if(err){
         console.log(err)
         return
