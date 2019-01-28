@@ -17,12 +17,19 @@ module.exports = (server,TempEvent)=>{
         const events = ['data','error']
         events.forEach(event=>{        
             let oldData = null
-            TempEvent.on(event,_data=>{
+            TempEvent.on(event,data=>{
                 try {
-                    //if(oldData !=_data){
-                        webSocket.send(_data)
-                        oldData=_data; 
-                    //}
+                    /* if(oldData !=data){
+                        webSocket.send(JSON.stringify({
+                            type:"data",
+                            data,
+                        }))
+                        oldData=data; 
+                    } */
+                    webSocket.send(JSON.stringify({
+                        type:"data",
+                        data,
+                    }))
                 } catch (error) {
                     
                 }

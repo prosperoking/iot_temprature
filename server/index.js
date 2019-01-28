@@ -29,7 +29,19 @@ app.get('/wifi-networks',(req,res)=>{
 app.get('/test',(req,res)=>{
     return res.sendFile(__dirname +"/public/index.html")
 })
-
+app.get('/status',async (req,res)=>{
+    try {
+        let data = await new Promise((resolve,reject)=>{
+            let reading = getTemprature(null,1);
+            reading.on('data',info=>resolve(JSON.parse(info)))
+            reading.on('error',err=>reject(JSON.parse(err)))
+        })
+        res.json(data,
+        )
+    } catch (err) {
+        res.status(500).json({message:err.message,status:false})
+    }
+})
 app.get('/',(req,res)=>{
     return res.json({
         status:true,

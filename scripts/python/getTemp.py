@@ -11,7 +11,7 @@ args = argsPaser.parse_args()
 counter = args.c or True
 
 while counter:
-    _humidity, _temp = Adafruit_DHT.read_retry(22,4,retries=1,delay_seconds=0.2)
+    _humidity, _temp = Adafruit_DHT.read_retry(11,4,delay_seconds=0.2)
     #_humidity, _temp = ["15.5f","70.54f"]
 
     if _humidity is not None and _temp is not None:
