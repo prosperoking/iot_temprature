@@ -10,11 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "bluetooth-serial-port": "^2.1.7",
-    "express": "^4.16.4",
-    "morgan": "^1.9.1",
-    "node-bluetooth": "^1.2.4",
-    "serialport": "^7.1.0",
-    "socket.io": "^2.2.0",
-    "ws": "^6.1.2"
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "node-bluetooth": "^1.2.6",
+    "serialport": "^7.1.5",
+    "socket.io": "^2.3.0",
+    "ws": "^6.2.1"
   }
 }
